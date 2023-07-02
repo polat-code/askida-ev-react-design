@@ -1,0 +1,250 @@
+.color-orange {
+    color: #EC9F05 !important;
+}
+
+.bg-orange {
+    background-color: #EC9F05 !important;;
+}
+
+.color-green {
+    color: #00916E !important;
+}
+
+.bg-green {
+    background-color: #00916E !important;
+}
+
+.color-yellow {
+    color: #E4FF85 !important;
+}
+
+.bg-yellow {
+    background-color: #E4FF85 !important;
+}
+
+.color-whitesmoke {
+    color: #F4F2F3 !important;
+}
+
+.bg-whitesmoke {
+    background-color: #F4F2F3 !important;
+}
+
+.faqButton {
+    text-decoration: none !important;
+    color: #F4F2F3 !important;
+}
+
+.faqButton:hover {
+    color: #EC9F05 !important;
+}
+
+.faqButton:focus {
+    color: #EC9F05 !important;
+}
+
+.menuItem {
+    color: #F4F2F3 !important;
+    font-weight: bold !important;
+}
+
+.menuItem:hover {
+    color: #EC9F05 !important;
+    font-weight: bold !important;
+}
+
+.menuItem.active {
+    color: #EC9F05 !important;
+}
+
+.loginRegisterDirection {
+    color: #00916E;
+}
+
+.loginRegisterDirection:hover {
+    color: black !important;
+}
+
+.loginRegisterDirection.active {
+    background-color: #00916E !important;
+}
+
+.socialMediaAcc {
+    color: #00916E !important;
+}
+
+.socialMediaAcc:hover {
+    color: black !important;
+}
+
+.form-check-input.active {
+    color: #00916E !important;
+}
+
+.submitBtn {
+    background-color: #00916E !important;
+    color: #F4F2F3
+}
+
+.submitBtn:hover {
+    color: #F4F2F3;
+    opacity: 0.8;
+}
+
+a {
+    text-decoration: none !important;
+    color: #00916E;
+}
+
+a:hover {
+    color: black;
+}
+
+.loginRegisterForm {
+    border: 2px solid #00916E;
+    border-radius: 2%;
+    background: white;
+    width: 40rem;
+}
+
+.loginRegisterDirectionTab {
+    border: 2px solid #00916E;
+}
+
+.contactForm {
+    border: 2px solid #00916E;
+    /*border-radius: 2%;*/
+    background-color: white;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.homeIcon {
+    width: 15%;
+}
+
+.applyingButton {
+    background-color: #00916E;
+    color: #F4F2F3;
+}
+
+.applyingButton:hover {
+    background-color: #E4FF85;
+    color: #00916E;
+    transition: 0.3s;
+}
+
+.adminLogin {
+    border: 2px solid #00916E;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    /*width: 240px;*/
+    z-index: 600;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sideBarItem {
+    color: white !important;
+    list-style-type: none !important;
+}
+
+.sideBarItem:hover {
+    color: #EC9F05 !important;
+}
+
+.sideBarItem.active {
+    border: 0;
+    box-shadow: 0 1px 0 0 #EC9F05;
+    color: #EC9F05 !important;
+}
+
+.each-slide-effect > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 350px;
+}
+
+.each-slide-effect span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
+}
+
+
