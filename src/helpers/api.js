@@ -100,3 +100,15 @@ export const getAdvertById = (advertId) => {
     });
   return response;
 };
+
+export const validateUser = (credentials) => {
+  const response = axios
+    .post(baseAppUrl + '/auth/user', credentials)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};

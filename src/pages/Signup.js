@@ -3,6 +3,7 @@ import SocialMediaLoginRegisterPart from '../components/SocialMediaLoginRegister
 import { useState } from 'react';
 import { sendUserInfo } from '../helpers/api';
 import { useNavigate } from 'react-router-dom';
+import { showErrorNotification, showSuccessNotification } from '../helpers/toast';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -17,12 +18,12 @@ const Signup = () => {
 
   const checkFields = () => {
     if (password === '' || validationPassword === '' || password !== validationPassword) {
-      // show error message
+      showErrorNotification('Şifreler tutarlı değil!');
       return false;
     }
     const checkBox = document.getElementById('registerCheck').checked;
     if (!checkBox) {
-      // show error message
+      showErrorNotification('Lütfen sözleşmeyi onaylayınız.');
       return false;
     }
     return true;
@@ -43,8 +44,8 @@ const Signup = () => {
     };
     const resp = await sendUserInfo(userInfo);
     if (resp.status === 200) {
-      // show successful message
-      navigate('/');
+      showSuccessNotification('Başarılı bir şekilde kaydoldunuz!');
+      navigate('/login');
     }
   };
   return (

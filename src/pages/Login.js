@@ -1,7 +1,42 @@
+import { useState } from 'react';
 import LoginRegisterDirection from '../components/LoginRegisterDirection';
 import SocialMediaLoginRegisterPart from '../components/SocialMediaLoginRegisterPart';
+import { validateUser } from '../helpers/api';
+import {
+  showErrorNotification,
+  showInfoNotification,
+  showSuccessNotification
+} from '../helpers/toast';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const setEmailChanged = (email) => {
+    setEmail(email);
+  };
+
+  const setPasswordChanged = (password) => {
+    setPassword(password);
+  };
+
+  const handleRegisterButton = async () => {
+    const resp = await validateUser({ email, password });
+    console.log(resp);
+    if (resp.status === 200) {
+      //local storage
+      window.localStorage.setItem('user', JSON.stringify(resp.data));
+      showSuccessNotification('Giriş Başarılı');
+      navigate('/');
+    } else if (resp.response.status === 404) {
+      // invalid password and email
+      showErrorNotification('Kullanıcı Adı veya Şifre Yanlış');
+    } else if (resp.response.status === 406) {
+      showInfoNotification('Lütfen Emailiniz Onaylayınız!');
+    }
+  };
+
   return (
     <>
       <section className="bg-yellow pb-4 d-flex justify-content-center">
@@ -12,14 +47,30 @@ const Login = () => {
               <SocialMediaLoginRegisterPart />
               <p className="text-center">or:</p>
               <div className="form-outline mb-4">
-                <input type="email" id="loginName" className="form-control" />
+                <input
+                  type="email"
+                  id="loginName"
+                  className="form-control"
+                  onChange={(e) => {
+                    setEmailChanged(e.target.value);
+                  }}
+                  value={email}
+                />
                 <label className="form-label" htmlFor="loginName">
                   Email
                 </label>
               </div>
 
               <div className="form-outline mb-4">
-                <input type="password" id="loginPassword" className="form-control" />
+                <input
+                  type="password"
+                  id="loginPassword"
+                  className="form-control"
+                  onChange={(e) => {
+                    setPasswordChanged(e.target.value);
+                  }}
+                  value={password}
+                />
                 <label className="form-label" htmlFor="loginPassword">
                   Password
                 </label>
@@ -45,7 +96,10 @@ const Login = () => {
                 </div>
               </div>
               <div className="row p-4">
-                <button type="submit" className="btn submitBtn btn-block mb-4">
+                <button
+                  type="button"
+                  className="btn submitBtn btn-block mb-4"
+                  onClick={handleRegisterButton}>
                   Sign in
                 </button>
               </div>

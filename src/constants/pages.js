@@ -10,10 +10,10 @@ import Dashboard from '../pages/adminPages/Dashboard';
 import User from '../pages/adminPages/user/User';
 import Ads from '../pages/adminPages/ads/Ads';
 import MatchAdUser from '../pages/adminPages/matchAdUser/MatchAdUser';
-// ICONLARA GEREK VAR MI, HEADERDA KULLANACAK MISIN ?
-// Pageleri düzenle, user, admin, common/other?
+import AllAds from '../pages/allAds';
+
 export const pages = {
-  userPages: {
+  nonAuthPages: {
     home: {
       title: 'Anasayfa',
       path: '/',
@@ -33,34 +33,48 @@ export const pages = {
       icon: 'fa-circle-info'
     },
     login: {
-      title: 'Giriş Yap',
+      title: 'Kullanıcı Girişi',
       path: '/login',
       element: <Login />,
       icon: 'fa-user'
     },
-    signup: {
-      title: 'Üye Ol',
-      path: '/signup',
-      element: <Signup />,
+    adminLogin: {
+      title: 'Admin Girişi',
+      path: '/adminLogin',
+      element: <AdminLogin />,
       icon: 'fa-user'
+    }
+  },
+  userPages: {
+    home: {
+      title: 'Anasayfa',
+      path: '/',
+      element: <Home />,
+      icon: 'fa-home'
     },
-    detailedAd: {
-      title: 'Detaylı İlan',
-      path: '/detailedAd',
-      element: <DetailedAdPage />,
+    faq: {
+      title: 'SSS',
+      path: '/frequently-asked-questions',
+      element: <FAQ />,
+      icon: 'fa-book'
+    },
+    contact: {
+      title: 'İletişim',
+      path: '/contact',
+      element: <Contact />,
       icon: 'fa-circle-info'
+    },
+    allAds: {
+      title: 'İlan Bul',
+      path: '/ads',
+      element: <AllAds />,
+      icon: 'fa-home'
     },
     shareAd: {
       title: 'İlan Paylaş',
       path: '/shareAd',
       element: <ShareAd />,
       icon: 'fa-pencil'
-    },
-    adminLogin: {
-      title: 'Admin',
-      path: '/adminLogin',
-      element: <AdminLogin />,
-      icon: 'fa-home'
     }
   },
   adminPages: {
@@ -89,13 +103,18 @@ export const pages = {
       icon: 'fa-arrows-up-down-left-right'
     }
   },
-  // common pageleri -> user headerında gösterilmeyecek olanları buraya al
   otherPages: {
-    logout: {
-      isLogout: true,
-      title: 'Çıkış Yap',
-      icon: 'fa-sign-out-alt',
-      path: '#'
+    detailedAd: {
+      title: 'Detaylı İlan',
+      path: '/detailedAd',
+      element: <DetailedAdPage />,
+      icon: 'fa-circle-info'
+    },
+    signup: {
+      title: 'Üye Ol',
+      path: '/signup',
+      element: <Signup />,
+      icon: 'fa-user'
     }
   }
 };

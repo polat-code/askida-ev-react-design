@@ -7,6 +7,8 @@ const HomeAds = () => {
 
   const getAllAdvertsFromDB = async () => {
     const adverts = await getAllAdverts();
+    setAdverts(adverts);
+    /*
     adverts
       .then((resp) => {
         setAdverts(resp);
@@ -14,6 +16,7 @@ const HomeAds = () => {
       .catch((error) => {
         console.log(error);
       });
+      */
   };
 
   useEffect(() => {
