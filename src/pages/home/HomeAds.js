@@ -8,15 +8,6 @@ const HomeAds = () => {
   const getAllAdvertsFromDB = async () => {
     const adverts = await getAllAdverts();
     setAdverts(adverts);
-    /*
-    adverts
-      .then((resp) => {
-        setAdverts(resp);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-      */
   };
 
   useEffect(() => {
@@ -28,7 +19,6 @@ const HomeAds = () => {
       <div className="album py-5">
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {/* burası map olcak datalar çekildikten sonra */}
             {adverts &&
               adverts.map((advert) => {
                 return (
@@ -36,6 +26,7 @@ const HomeAds = () => {
                     key={advert.advertId}
                     description={advert.description}
                     advertTitle={advert.advertTitle}
+                    advertId={advert.advertId}
                   />
                 );
               })}

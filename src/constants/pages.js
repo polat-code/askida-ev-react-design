@@ -5,7 +5,6 @@ import Signup from '../pages/Signup';
 import Contact from '../pages/Contact';
 import DetailedAdPage from '../pages/detailedAdPage/DetailedAdPage';
 import ShareAd from '../pages/ShareAd';
-import AdminLogin from '../pages/adminPages/AdminLogin';
 import Dashboard from '../pages/adminPages/Dashboard';
 import User from '../pages/adminPages/user/User';
 import Ads from '../pages/adminPages/ads/Ads';
@@ -36,12 +35,6 @@ export const pages = {
       title: 'Kullanıcı Girişi',
       path: '/login',
       element: <Login />,
-      icon: 'fa-user'
-    },
-    adminLogin: {
-      title: 'Admin Girişi',
-      path: '/adminLogin',
-      element: <AdminLogin />,
       icon: 'fa-user'
     }
   },
@@ -106,7 +99,7 @@ export const pages = {
   otherPages: {
     detailedAd: {
       title: 'Detaylı İlan',
-      path: '/detailedAd',
+      path: '/detailedAd/:id',
       element: <DetailedAdPage />,
       icon: 'fa-circle-info'
     },

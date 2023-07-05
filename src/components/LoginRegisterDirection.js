@@ -1,23 +1,32 @@
 // geldiği page route a göre active yapacağız
+
+import classNames from 'classnames';
+import { Link, useLocation } from 'react-router-dom';
+
 // linklerle bağlarız
 const LoginRegisterDirection = () => {
+  const location = useLocation();
   return (
     <ul className="nav nav-justified mb-3 rounded loginRegisterDirectionTab ">
       <li className="nav-item ">
-        <a
-          className="nav-link loginRegisterDirection active color-whitesmoke"
-          href="../../../../Desktop/askida-ev-react-yapılı olan/src/components#!"
+        <Link
+          className={classNames('nav-link loginRegisterDirection bg-light text-dark', {
+            active: location.pathname === '/login'
+          })}
+          to="/login"
           role="tab">
           Login
-        </a>
+        </Link>
       </li>
       <li className="nav-item">
-        <a
-          className="nav-link loginRegisterDirection "
-          href="../../../../Desktop/askida-ev-react-yapılı olan/src/components#!"
+        <Link
+          className={classNames('nav-link loginRegisterDirection bg-light text-dark', {
+            active: location.pathname === '/signup'
+          })}
+          to="/signup"
           role="tab">
           Register
-        </a>
+        </Link>
       </li>
     </ul>
   );

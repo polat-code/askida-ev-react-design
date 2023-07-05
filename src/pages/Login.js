@@ -13,22 +13,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const setEmailChanged = (email) => {
-    setEmail(email);
-  };
-
-  const setPasswordChanged = (password) => {
-    setPassword(password);
-  };
 
   const handleRegisterButton = async () => {
     const resp = await validateUser({ email, password });
-    console.log(resp);
     if (resp.status === 200) {
       //local storage
       window.localStorage.setItem('user', JSON.stringify(resp.data));
       showSuccessNotification('Giriş Başarılı');
       navigate('/');
+      navigate(0);
     } else if (resp.response.status === 404) {
       // invalid password and email
       showErrorNotification('Kullanıcı Adı veya Şifre Yanlış');
@@ -52,7 +45,7 @@ const Login = () => {
                   id="loginName"
                   className="form-control"
                   onChange={(e) => {
-                    setEmailChanged(e.target.value);
+                    setEmail(e.target.value);
                   }}
                   value={email}
                 />
@@ -67,7 +60,7 @@ const Login = () => {
                   id="loginPassword"
                   className="form-control"
                   onChange={(e) => {
-                    setPasswordChanged(e.target.value);
+                    setPassword(e.target.value);
                   }}
                   value={password}
                 />
@@ -79,13 +72,7 @@ const Login = () => {
               <div className="row mb-4">
                 <div className="col-md-6 d-flex justify-content-center">
                   <div className="form-check mb-3 mb-md-0">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="loginCheck"
-                      checked
-                    />
+                    <input className="form-check-input" type="checkbox" value="" id="loginCheck" />
                     <label className="form-check-label" htmlFor="loginCheck">
                       Remember me
                     </label>

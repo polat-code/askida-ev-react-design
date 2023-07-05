@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 import home from '../../assets/images/home.jpg';
 import Icon from '../../components/Icon';
 import { getAdvertById } from '../../helpers/api';
+import { useParams } from 'react-router-dom';
 
 const DetailedAdPage = () => {
-  //const { advertId } = prop;
+  const params = useParams();
   const [advert, setAdvert] = useState({});
 
   const getAdvertByIdFromDb = async () => {
-    const advertDb = await getAdvertById(3);
+    const advertDb = await getAdvertById(parseInt(params.id));
     setAdvert(advertDb);
   };
 
   useEffect(() => {
     getAdvertByIdFromDb();
   }, []);
-  console.log(advert);
+
   return (
     <div className="container">
       <div className="row">

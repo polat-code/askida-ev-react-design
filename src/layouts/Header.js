@@ -9,7 +9,6 @@ const Header = () => {
   let pagesToBeDisplayed = Object.values(pages.nonAuthPages);
   if (user) {
     pagesToBeDisplayed = user.role === 'USER' ? pages.userPages : pages.adminPages;
-    console.log(user);
     if (user.status == 1)
       pagesToBeDisplayed = Object.values(pagesToBeDisplayed).filter(
         (obj) => obj !== pagesToBeDisplayed.shareAd
@@ -20,11 +19,10 @@ const Header = () => {
       );
   }
 
-  console.log(pagesToBeDisplayed);
-
   const handleLogout = () => {
     window.localStorage.removeItem('user');
     navigate('/');
+    navigate(0);
   };
 
   return (

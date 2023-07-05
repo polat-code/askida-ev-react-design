@@ -1,8 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import noImage from '../assets/images/noImage.jpg';
-import { getAllCities, getAllHeating, getAllRooms, getDistrictsByCityId } from '../helpers/api';
+import {
+  getAllCities,
+  getAllHeating,
+  getAllRooms,
+  getDistrictsByCityId,
+  saveAdvert
+} from '../helpers/api';
+import {
+  showErrorNotification,
+  showSuccessNotification,
+  showWarningNotification
+} from '../helpers/toast';
+import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 
 const ShareAd = () => {
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [heatings, setHeatings] = useState([]);
@@ -15,6 +30,11 @@ const ShareAd = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState('');
   const hiddenFileInput = useRef(null);
+  const [neigbourhood, setSelectedNeigbourhood] = useState('');
+  const [ageOfDwelling, setSelectedAgeOfDwelling] = useState(0);
+  const [meterSquare, setSelectedMeterSquare] = useState(0);
+  const [description, setSelectedDescription] = useState('');
+  const [title, setSelectedTitle] = useState('');
 
   const getCities = async () => {
     try {
@@ -29,7 +49,6 @@ const ShareAd = () => {
 
     const districts = await getDistrictsByCityId(selectedCity);
     setDistricts(districts);
-    console.log(districts);
   };
 
   useEffect(() => {
@@ -70,6 +89,34 @@ const ShareAd = () => {
     setImageUrl1(URL.createObjectURL(event.target.files[0]));
     setImageUrl2(URL.createObjectURL(event.target.files[1]));
     setImageUrl3(URL.createObjectURL(event.target.files[2]));
+  };
+
+  const handleApplication = async () => {
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    const data = {};
+    data.advertTitle = title;
+    data.memberId = user.memberId;
+    data.cityId = parseInt(selectedCity);
+    data.districtId = parseInt(selectedDistrict);
+    data.neigborhoodName = neigbourhood;
+    data.fuelId = parseInt(selectedFuel);
+    data.roomId = parseInt(selectedRoom);
+    data.description = description;
+    data.ageOfDwelling = parseInt(ageOfDwelling);
+    data.meterSquare = parseInt(meterSquare);
+
+    setIsSubmitting(true);
+    const res = await saveAdvert(data);
+    setIsSubmitting(false);
+
+    if (res.status == 200) {
+      showSuccessNotification('İlan Verildi');
+      navigate('/');
+    } else if (res.status == 406) {
+      showWarningNotification('Lütfen İlk Önce Mailiniz Onaylayın!');
+    } else {
+      showErrorNotification('Bir hata oluştu!');
+    }
   };
   return (
     <>
@@ -131,6 +178,8 @@ const ShareAd = () => {
                       type="text"
                       className="form-control border border-secondary"
                       id="neigbourhood"
+                      onChange={(e) => setSelectedNeigbourhood(e.target.value)}
+                      value={neigbourhood}
                     />
                   </div>
                 </div>
@@ -183,6 +232,8 @@ const ShareAd = () => {
                       type="text"
                       className="form-control border border-secondary"
                       id="inputBuilding"
+                      onChange={(e) => setSelectedAgeOfDwelling(e.target.value)}
+                      value={ageOfDwelling}
                     />
                   </div>
                 </div>
@@ -195,6 +246,8 @@ const ShareAd = () => {
                       type="text"
                       className="form-control border border-secondary"
                       id="inutBuildingSize"
+                      onChange={(e) => setSelectedMeterSquare(e.target.value)}
+                      value={meterSquare}
                     />
                   </div>
                 </div>
@@ -205,6 +258,8 @@ const ShareAd = () => {
                       type="text"
                       className="form-control border border-secondary"
                       id="inutBuildingSize"
+                      onChange={(e) => setSelectedTitle(e.target.value)}
+                      value={title}
                     />
                   </div>
                 </div>
@@ -217,6 +272,8 @@ const ShareAd = () => {
                       className="form-control border border-secondary"
                       id="inputExplanation"
                       placeholder="Açıklama"
+                      onChange={(e) => setSelectedDescription(e.target.value)}
+                      value={description}
                     />
                   </div>
                 </div>
@@ -261,7 +318,11 @@ const ShareAd = () => {
               <div className="row p-3">
                 <div className="col-md-3"></div>
                 <div className="col-md-6 btn submitBtn btn-block mb-4">
-                  <button type="submit" className="btn submitBtn">
+                  <button
+                    type="button"
+                    className={classNames('btn submitBtn', { 'bg-secondary': isSubmitting })}
+                    onClick={handleApplication}
+                    disabled={isSubmitting}>
                     Gönder
                   </button>
                 </div>

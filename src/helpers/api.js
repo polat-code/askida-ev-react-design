@@ -112,3 +112,39 @@ export const validateUser = (credentials) => {
     });
   return response;
 };
+
+export const getNumberOfMemberFromDB = () => {
+  const response = axios
+    .get(baseAppUrl + '/members/number-of-member')
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
+
+export const getNumberOfAdvertFromDB = () => {
+  const response = axios
+    .get(baseAppUrl + '/adverts/number-of-advert')
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
+
+export const saveAdvert = (credentials) => {
+  const response = axios
+    .post(baseAppUrl + '/adverts', credentials)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
