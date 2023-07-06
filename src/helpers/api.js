@@ -148,3 +148,62 @@ export const saveAdvert = (credentials) => {
     });
   return response;
 };
+
+export const getAllMembers = () => {
+  const response = axios
+    .get(baseAppUrl + '/members')
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
+export const applyToHouse = (memberId, advertId) => {
+  const response = axios
+    .post(baseAppUrl + '/applies/member-id/' + memberId + '/advert-id/' + advertId, {})
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
+
+export const getAllAppliedHouses = () => {
+  const response = axios
+    .get(baseAppUrl + '/applies/homes')
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
+
+export const bringFilteredUsers = (selectedId) => {
+  const response = axios
+    .get(baseAppUrl + '/applies/homes/advert/' + selectedId)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};
+
+export const matchUserHome = (selectedUser, selectedHouse) => {
+  const response = axios
+    .get(baseAppUrl + '/applies/member/' + selectedUser + '/advert/' + selectedHouse)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return response;
+};

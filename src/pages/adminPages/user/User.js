@@ -1,8 +1,19 @@
-import { exampleUserData } from '../../../constants/exampleUserData';
 import { adminHeaders } from '../../../constants/adminHeaders';
 import UserRowItem from './UserRowItem';
+import { useEffect, useState } from 'react';
+import { getAllMembers } from '../../../helpers/api';
 
 const User = () => {
+  const [members, setMembers] = useState([]);
+
+  const getAllMembersFromDB = async () => {
+    const members = await getAllMembers();
+    setMembers(members);
+  };
+  useEffect(() => {
+    getAllMembersFromDB();
+  }, []);
+
   return (
     <div className="col">
       <div className="bd-example-snippet bd-code-snippet">
@@ -20,14 +31,8 @@ const User = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(exampleUserData).map((item, index) => {
-                return (
-                  <UserRowItem
-                    item={exampleUserData[item]}
-                    key={`userDataItem${index}`}
-                    rowNum={index + 1}
-                  />
-                );
+              {members.map((item, index) => {
+                return <UserRowItem item={item} key={`userDataItem${index}`} rowNum={index + 1} />;
               })}
             </tbody>
           </table>

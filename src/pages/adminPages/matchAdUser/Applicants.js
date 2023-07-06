@@ -1,10 +1,10 @@
 import { adminHeaders } from '../../../constants/adminHeaders';
-import { exampleUserData } from '../../../constants/exampleUserData';
 import MatchingUserRowItem from './MatchingUserRowItem';
+import PropTypes from 'prop-types';
 
-const Applicants = () => {
+const Applicants = ({ setSelectedUser, data }) => {
   return (
-    <div className="col-md-5 p-0 me-5 border border-2 border-dark rounded">
+    <div className="col-md-6 p-0 me-5 border border-2 border-dark rounded">
       <div className="text-center bg-green p-2">
         <h4>Başvuru yapan üye bilgileri</h4>
       </div>
@@ -23,12 +23,13 @@ const Applicants = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(exampleUserData).map((item, index) => {
+              {data?.map((item, index) => {
                 return (
                   <MatchingUserRowItem
-                    item={exampleUserData[item]}
+                    item={item}
                     key={`userDataItem${index}`}
                     rowNum={index + 1}
+                    setSelectedUser={setSelectedUser}
                   />
                 );
               })}
@@ -39,5 +40,12 @@ const Applicants = () => {
     </div>
   );
 };
+
+Applicants.propTypes = {
+  setSelectedUser: PropTypes.func,
+  data: PropTypes.any
+};
+
+Applicants.defaultProps = {};
 
 export default Applicants;

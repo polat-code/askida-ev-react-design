@@ -1,8 +1,20 @@
-import { exampleAdData } from '../../../constants/exampleAdData';
 import { adminHeaders } from '../../../constants/adminHeaders';
 import AdRowItem from './AdRowItem';
+import { getAllAdverts } from '../../../helpers/api';
+import { useEffect, useState } from 'react';
 
 const Ads = () => {
+  const [ads, setAdds] = useState([]);
+
+  const getAllAdsFromDB = async () => {
+    const ads = await getAllAdverts();
+    setAdds(ads);
+  };
+
+  useEffect(() => {
+    getAllAdsFromDB();
+  }, []);
+
   return (
     <div className="col">
       <div className="col">
@@ -21,14 +33,8 @@ const Ads = () => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(exampleAdData).map((item, index) => {
-                  return (
-                    <AdRowItem
-                      item={exampleAdData[item]}
-                      key={`adDataItem${index}`}
-                      rowNum={index + 1}
-                    />
-                  );
+                {ads.map((item, index) => {
+                  return <AdRowItem item={item} key={`adDataItem${index}`} rowNum={index + 1} />;
                 })}
               </tbody>
             </table>

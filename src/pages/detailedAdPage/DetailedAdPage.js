@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import home from '../../assets/images/home.jpg';
 import Icon from '../../components/Icon';
-import { getAdvertById } from '../../helpers/api';
+import { applyToHouse, getAdvertById } from '../../helpers/api';
 import { useParams } from 'react-router-dom';
+import { showErrorNotification, showSuccessNotification } from '../../helpers/toast';
 
 const DetailedAdPage = () => {
   const params = useParams();
@@ -11,6 +12,17 @@ const DetailedAdPage = () => {
   const getAdvertByIdFromDb = async () => {
     const advertDb = await getAdvertById(parseInt(params.id));
     setAdvert(advertDb);
+  };
+
+  const handleApply = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const res = await applyToHouse(user.memberId, parseInt(params.id));
+    if (res.data.status === 'NOT_FOUND') showErrorNotification('Bu eve önceden başvuru yaptınız.');
+    else if (res.data.status === 'OK')
+      showSuccessNotification('Eve Başarılı Bir şekilde başvuru yaptınız.');
+    else {
+      showErrorNotification('Bir hata oluştu');
+    }
   };
 
   useEffect(() => {
@@ -62,7 +74,7 @@ const DetailedAdPage = () => {
           </div>
           <div className="col pb-3">
             <div className="row d-flex justify-content-center p-3">
-              <button className="btn btn-block applyingButton" type="submit">
+              <button className="btn btn-block applyingButton" type="button" onClick={handleApply}>
                 İlana Başvur
               </button>
             </div>

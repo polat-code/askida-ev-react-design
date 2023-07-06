@@ -4,14 +4,13 @@ const AdRowItem = ({ item, rowNum }) => {
   return (
     <tr>
       <th scope="row">{rowNum}</th>
-      <td>{item.il}</td>
-      <td>{item.ilce}</td>
-      <td>{item.mahalle}</td>
-      <td>{item.yakacak}</td>
-      <td>{item.binaYas}</td>
-      <td>{item.m2}</td>
-      <td>{item.ilaniVeren}</td>
-      <td>{item.mediaIds}</td>
+      <td>{item.cityName}</td>
+      <td>{item.districtName}</td>
+      <td>{item.neighborhoodName}</td>
+      <td>{item.fuelType}</td>
+      <td>{item.ageOfDwelling}</td>
+      <td>{item.meterSquare}</td>
+      <td>{item.memberName}</td>
     </tr>
   );
 };

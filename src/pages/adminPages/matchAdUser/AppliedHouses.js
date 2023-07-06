@@ -1,8 +1,8 @@
 import { adminHeaders } from '../../../constants/adminHeaders';
-import { exampleAdData } from '../../../constants/exampleAdData';
 import MatchingAdRowItem from './MatchingAdRowItem';
+import PropTypes from 'prop-types';
 
-const AppliedHouses = () => {
+const AppliedHouses = ({ setSelectedHouse, data }) => {
   return (
     <div className="col-md-5 p-0 me-5 border border-2 border-dark rounded">
       <div className="text-center bg-orange p-2">
@@ -23,12 +23,13 @@ const AppliedHouses = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(exampleAdData).map((item, index) => {
+              {data?.map((item, index) => {
                 return (
                   <MatchingAdRowItem
-                    item={exampleAdData[item]}
+                    item={item}
                     key={`userDataItem${index}`}
                     rowNum={index + 1}
+                    setSelectedHouse={setSelectedHouse}
                   />
                 );
               })}
@@ -39,5 +40,12 @@ const AppliedHouses = () => {
     </div>
   );
 };
+
+AppliedHouses.propTypes = {
+  setSelectedHouse: PropTypes.func,
+  data: PropTypes.array
+};
+
+AppliedHouses.defaultProps = {};
 
 export default AppliedHouses;

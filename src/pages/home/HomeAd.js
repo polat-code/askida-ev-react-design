@@ -1,7 +1,21 @@
 import { Link } from 'react-router-dom';
+import { applyToHouse } from '../../helpers/api';
+import { showErrorNotification, showSuccessNotification } from '../../helpers/toast';
 
 const HomeAd = (prop) => {
   let { description, advertTitle, advertId } = prop;
+
+  const handleApply = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const res = await applyToHouse(user.memberId, advertId);
+    if (res.data.status === 'NOT_FOUND') showErrorNotification('Bu eve önceden başvuru yaptınız.');
+    else if (res.data.status === 'OK')
+      showSuccessNotification('Eve Başarılı Bir şekilde başvuru yaptınız.');
+    else {
+      showErrorNotification('Bir hata oluştu');
+    }
+  };
+
   return (
     <div className="col">
       <div className="card shadow-sm">
@@ -31,7 +45,10 @@ const HomeAd = (prop) => {
                   Detay
                 </button>
               </Link>
-              <button type="button" className="btn btn-sm btn-outline-secondary">
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-secondary"
+                onClick={handleApply}>
                 İlana Başvur
               </button>
             </div>
