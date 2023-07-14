@@ -78,7 +78,7 @@ export const pages = {
       icon: 'fa-gauge'
     },
     user: {
-      title: 'Üye İşlemleri',
+      title: 'Üyeler',
       path: '/user',
       element: <User />,
       icon: 'fa-users'
