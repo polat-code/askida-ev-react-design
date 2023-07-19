@@ -3,7 +3,6 @@ import axios from 'axios';
 //const baseAppUrl = 'http://localhost:8082/api';
 const baseAppUrl = 'https://askidaevbackend-6593566faf1d.herokuapp.com';
 
-
 export const sendContactInfo = (contactInfo) => {
   const response = axios
     .post(baseAppUrl + '/contact', {
