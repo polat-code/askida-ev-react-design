@@ -7,6 +7,6 @@ password: 123456
 email: ozgurhan.45@gmail.com
 password: 123456
 
-#Admin login:
+# Admin login:
 email: eesraakgull@gmail.com
 password: 123456
